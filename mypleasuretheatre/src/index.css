@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('./Marunouchi_TOEI.jpg');
+  background-repeat: round;
+  background-size: 100vw;
+  height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.userGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  width: auto;
+  gap: 15px;
+  
+}
+
+.userGridContainer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  display:flex;
+  justify-content: center;
+}
+
+.userName {
+  font-weight: bold;
+  color: white;
+  font-family:'Courier New', Courier, monospace;
+}
+
+.userPfp {
+  aspect-ratio: 1/1;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.userPfp.bouncingtrue {
+  animation: gelatine 0.5s infinite;
+  box-shadow: 0px 0px 10px 10px lightblue;
+}
+@keyframes gelatine {
+  from, to { transform: scale(1, 1);}
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9);  }
+  75% { transform: scale(0.95, 1.05); }
+}
+
+.holding.popcorn {
+  background-image: url(pngtree-close-up-a-single-popcorn-png-image_15138473.png);
+  display:inline-block;
+  height: 50px;
+  width: 50px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  transform: translate(-50%, -50%); 
+  animation: verticalBounceFromGround 1.5s ease-out forwards;
+}
+
+.animation-wrapper {
+  display: inline-block;
+  position: absolute;
+  --x-pos: 25%; 
+  left: var(--x-pos);
+}
+.animation-wrapper.left {
+  --x-pos: 25%; 
+  left: var(--x-pos);
+}
+.animation-wrapper.right {
+  --x-pos: 75%; 
+  left: var(--x-pos);
+}
+.animation-wrapper.popcorn {
+  position: absolute;
+  animation: moveToCenterSmooth 1.5s linear forwards;
+}
+
+@keyframes moveToCenterSmooth {
+  0% {
+    /* At 0%, we keep it exactly where it naturally sits */
+    left: var(--x-pos); 
+  }
+  100% {
+    /* At 100%, we override it to the center. 
+       -50px shifts it left by half its width (assuming a 100px wide element) */
+    left: 50%;
+  }
+}
+
+@keyframes verticalBounceFromGround {
+  0% {
+    /* STARTS ON THE GROUND: Initial explosive launch */
+    transform: translate(-50%, -50%) scaleY(1);
+  }
+  15% {
+    /* Peak of 1st high bounce */
+    transform: translate(-50%, calc(-50% - 200px)) scaleY(1); 
+  }
+  30% {
+    /* 1st Ground Impact */
+    transform: translate(-50%, -50%) scaleY(0.82); /* Flattened by gravity */
+  }
+  33% {
+    /* 1st Rebound: Energy pushing it back up */
+    transform: translate(-50%, -50%) scaleY(1.05); /* Stretched upward */
+  }
+  48% {
+    /* Peak of 2nd bounce (decayed height) */
+    transform: translate(-50%, calc(-50% - 100px)) scaleY(1);
+  }
+  60% {
+    /* 2nd Ground Impact */
+    transform: translate(-50%, -50%) scaleY(0.88);
+  }
+  63% {
+    /* 2nd Rebound */
+    transform: translate(-50%, -50%) scaleY(1.02);
+  }
+  75% {
+    /* Peak of 3rd bounce */
+    transform: translate(-50%, calc(-50% - 40px)) scaleY(1);
+  }
+  85% {
+    /* 3rd Ground Impact */
+    transform: translate(-50%, -50%) scaleY(0.95);
+  }
+  92% {
+    /* Peak of final micro-bounce */
+    transform: translate(-50%, calc(-50% - 10px)) scaleY(1);
+  }
+  100% {
+    /* Settle completely flat and relaxed at rest */
+    transform: translate(-50%, -50%) scaleY(1);
+  }
+}
